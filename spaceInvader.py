@@ -38,7 +38,7 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 6
 
-for i in range(num_of_enemies):
+for i in range(num_of_enemies):  #using counter i to enable multiple enemries!
     enemyImg.append(pygame.image.load('c:/Users/danya/Documents/Visual Studio Code Projects/Projects/spaceInvaderGame/enemy1.png'))
     enemyX.append(random.randint(0,800))
     enemyY.append(random.randint(50,150))
@@ -75,7 +75,7 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 
 def show_score(x, y):
     score = font.render("Score : " + str(score_value), True, (255, 255, 255))
-    screen.blit(score, (x, y))
+    screen.blit(score, (x, y)) #blit means Draw on the screen.
 
 def game_over_text():
     over_text = over_font.render("GAME OVER", True, (255, 255, 255))
@@ -96,10 +96,10 @@ over_font = pygame.font.Font('freesansbold.ttf', 64)
 
 #GAME LOOP (Most important part of code)
 running = True
-while running: 
+while running: #Anything you want to persist on the screen? Must go under this While Loop.
     screen.fill((230,230,250)) #set RGB screen bckgrd color, needs to be done above everything
     # Background Image
-    screen.blit(background, (0, 0))
+    screen.blit(background, (0, 0)) #blit means Draw.
     
     for event in pygame.event.get(): #all 'events' should b under this for loop.
         if event.type == pygame.QUIT:
@@ -115,7 +115,7 @@ while running:
                 if bullet_state is "ready":
                     bulletSound = mixer.Sound("c:/Users/danya/Documents/Visual Studio Code Projects/Projects/spaceInvaderGame/laser.wav")
                     bulletSound.play()
-                    # Now, Get the current x co-ordinate of the spaceship
+                    # Now, Get the current x co-ordinate of the spaceship, so it doesn't move L/R once fired. 
                     bulletX = playerX
                     fire_bullet(bulletX, bulletY)
                 
@@ -135,9 +135,9 @@ while running:
     for i in range(num_of_enemies):
 
         # Game Over
-        if enemyY[i] > 440:
+        if enemyY[i] > 440:    #the enemy[i] specifies WHICH enemy from the list. 
             for j in range(num_of_enemies):
-                enemyY[j] = 2000
+                enemyY[j] = 2000  #y-cood of 2000 moves all enemies offscreen.
             game_over_text()
             break
 
@@ -151,10 +151,10 @@ while running:
 
         # Collision
         collision = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
-        if collision:
+        if collision:  #stores the value True or False. 
             explosionSound = mixer.Sound("c:/Users/danya/Documents/Visual Studio Code Projects/Projects/spaceInvaderGame/explosion.wav")
             explosionSound.play()
-            bulletY = 480
+            bulletY = 480 #upon collision, bullet reset to starting point i.e. 480
             bullet_state = "ready"
             score_value += 1
             enemyX[i] = random.randint(0, 736)
@@ -165,7 +165,7 @@ while running:
     # Bullet Movement
     if bulletY <= 0:
         bulletY = 480
-        bullet_state = "ready"
+        bullet_state = "ready" #bullet marked as ready (to fire) once the previous bullet has crossed the screen.
 
     if bullet_state is "fire":
         fire_bullet(bulletX, bulletY)
