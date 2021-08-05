@@ -3,18 +3,18 @@ import random
 import math
 from pygame import mixer
 
-#Python interpreter HAS to be the 3.9.6 WINDOWS STORE version. 
+# Python interpreter HAS to be the 3.9.6 WINDOWS STORE version. 
 
-#Initialize the program
+# Initialize the program
 pygame.init() #need this line in ANY game.
 
-#Create the screen
+# Create the screen
 screen = pygame.display.set_mode((800,600))
 
 # Background
 background = pygame.image.load('c:/Users/danya/Documents/Visual Studio Code Projects/Projects/spaceInvaderGame/background.png')
 
-#Title and Icon
+# Title and Icon
 pygame.display.set_caption("Space Invader")
 icon = pygame.image.load('c:/Users/danya/Documents/Visual Studio Code Projects/Projects/spaceInvaderGame/spaceship-icon.png')
 pygame.display.set_icon(icon)
@@ -24,13 +24,13 @@ mixer.music.load("c:/Users/danya/Documents/Visual Studio Code Projects/Projects/
 mixer.music.play(-1)
  
 
-#Player
+# Player
 playerImg = pygame.image.load('c:/Users/danya/Documents/Visual Studio Code Projects/Projects/spaceInvaderGame/playership.png')
 playerX = 370
 playerY = 480
 playerX_change = 0
 
-#Enemy
+# Enemy
 enemyImg = []
 enemyX = []
 enemyY = []
@@ -45,7 +45,7 @@ for i in range(num_of_enemies):  #using counter i to enable multiple enemries!
     enemyX_change.append(4) #(pre-wall-collision natural distance change)
     enemyY_change.append(40) #(pre-wall-collision natural distance change)
 
-#Bullet
+# Bullet
     # Ready -> You can't see the bullet on the screen
     # Fire -> The bullet is currently moving
 bulletImg = pygame.image.load('c:/Users/danya/Documents/Visual Studio Code Projects/Projects/spaceInvaderGame/bullet.png')
